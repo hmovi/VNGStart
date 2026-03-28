@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vera North Group | Global Management Consulting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #0A2540;
+            --secondary-navy: #1A3A5C;
+            --accent-blue: #2E5C8A;
+            --light-blue: #E8F1F8;
+            --gold: #B8956A;
+            --text-dark: #1A1A1A;
+            --text-light: #4A5568;
+            --white: #FFFFFF;
+            --subtle-gray: #F7FAFC;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(10, 37, 64, 0.08);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .contact-btn {
+            padding: 12px 28px;
+            background: var(--primary-navy);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: var(--secondary-navy);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 85vh;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 60px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-size: 68px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            max-width: 900px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            line-height: 1.5;
+            max-width: 700px;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 48px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            margin-top: 80px;
+            padding-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            font-size: 20px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            padding: 48px 40px;
+            background: white;
+            border: 1px solid rgba(10, 37, 64, 0.08);
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover:before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(10, 37, 64, 0.12);
+            border-color: transparent;
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--light-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .service-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .service-description {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Global Presence */
+        .global-presence {
+            background: var(--subtle-gray);
+            padding: 120px 60px;
+        }
+
+        .presence-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .presence-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .presence-text h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 32px;
+            letter-spacing: -1px;
+        }
+
+        .presence-text p {
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 48px;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .location {
+            background: white;
+            padding: 32px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-blue);
+            transition: all 0.3s;
+        }
+
+        .location:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(10, 37, 64, 0.08);
+        }
+
+        .location-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 8px;
+        }
+
+        .location-role {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Insights Section */
+        .insights {
+            padding: 120px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .insight-card {
+            background: white;
+            border: 1px solid rgba(10, 37, 64, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(10, 37, 64, 0.12);
+        }
+
+        .insight-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--secondary-navy) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            opacity: 0.9;
+        }
+
+        .insight-content {
+            padding: 32px;
+        }
+
+        .insight-category {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .insight-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .insight-excerpt {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+            padding: 100px 60px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .cta-content p {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--primary-navy);
+        }
+
+        .btn-primary:hover {
+            background: #D4A76A;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-navy);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-navy);
+            color: white;
+            padding: 80px 60px 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .footer-links h4 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.6;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .insights-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .presence-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .services-grid,
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                padding: 0 30px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo serif">Vera North Group</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#global">Global Presence</a></li>
+                <li><a href="#insights">Insights</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <button class="contact-btn" onclick="location.href='https://contact.veranorthgroup.com'">Contact Us</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <div class="hero-tag fade-in">BOUTIQUE MANAGEMENT CONSULTING</div>
+            <h1 class="hero-title serif fade-in delay-1">Connecting Global Markets, Building Strategic Partnerships</h1>
+            <p class="hero-subtitle fade-in delay-2">We bridge businesses across MENA, India, North America, and Europe through strategic consulting, trade development, and transformative technology integration.</p>
+            
+            <div class="hero-stats">
+                <div class="stat fade-in delay-3">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Global Operations Hubs</div>
+                </div>
+                <div class="stat fade-in delay-3">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Continents Connected</div>
+                </div>
+                <div class="stat fade-in delay-4">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Core Service Areas</div>
+                </div>
+                <div class="stat fade-in delay-4">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Growth Opportunities</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <div class="section-tag">WHAT WE DO</div>
+            <h2 class="section-title serif">Comprehensive Solutions for Global Growth</h2>
+            <p class="section-description">From strategic market entry to operational transformation, we provide end-to-end consulting services that drive measurable results.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🌍</div>
+                <h3 class="service-title">Trade Development & Consulting</h3>
+                <p class="service-description">Strategic guidance for international trade expansion, market analysis, and regulatory compliance across global markets.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3 class="service-title">Import/Export Solutions</h3>
+                <p class="service-description">Streamlined logistics, customs clearance, and supply chain optimization for seamless cross-border commerce.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3 class="service-title">Sales & Marketing Development</h3>
+                <p class="service-description">Comprehensive marketing strategies, content creation through Lavaberry Studios, and in-person market development.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🤝</div>
+                <h3 class="service-title">B2B Representation & Government Relations</h3>
+                <p class="service-description">Strategic partnerships, government connections, and B2B representation to unlock new opportunities.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3 class="service-title">Mergers & Acquisitions</h3>
+                <p class="service-description">Expert guidance in acquiring and merging small to medium-sized businesses across North America.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3 class="service-title">Tech Stack & AI Integration</h3>
+                <p class="service-description">Digital transformation, technology modernization, and AI implementation to enhance operational efficiency.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3 class="service-title">Strategic & Financial Risk Management</h3>
+                <p class="service-description">Comprehensive risk assessment, mitigation strategies, and financial planning for sustainable growth.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3 class="service-title">Lavaberry Studios</h3>
+                <p class="service-description">Full-service content creation, social media management, and e-commerce marketing operations.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔗</div>
+                <h3 class="service-title">Cross-Border Partnerships</h3>
+                <p class="service-description">Facilitating strategic alliances between businesses in emerging and established markets worldwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Presence -->
+    <section class="global-presence" id="global">
+        <div class="presence-container">
+            <div class="section-header">
+                <div class="section-tag">WHERE WE OPERATE</div>
+                <h2 class="section-title serif">Global Reach, Local Expertise</h2>
+                <p class="section-description">Operating from five strategic hubs across three continents, we bring local market knowledge and global perspective to every engagement.</p>
+            </div>
+
+            <div class="presence-content">
+                <div class="presence-text">
+                    <h2 class="serif">Five Cities. Three Continents. Infinite Connections.</h2>
+                    <p>Our strategically positioned operations centers enable us to serve clients across time zones and cultures, providing seamless support from initial consultation to implementation and beyond.</p>
+                </div>
+
+                <div class="locations-grid">
+                    <div class="location">
+                        <div class="location-name">Vancouver</div>
+                        <div class="location-role">Global Headquarters</div>
+                    </div>
+                    <div class="location">
+                        <div class="location-name">Zurich</div>
+                        <div class="location-role">European Operations</div>
+                    </div>
+                    <div class="location">
+                        <div class="location-name">Dubai</div>
+                        <div class="location-role">MENA Hub</div>
+                    </div>
+                    <div class="location">
+                        <div class="location-name">London</div>
+                        <div class="location-role">European Markets</div>
+                    </div>
+                    <div class="location">
+                        <div class="location-name">New York</div>
+                        <div class="location-role">North American Markets</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="insights" id="insights">
+        <div class="section-header">
+            <div class="section-tag">THOUGHT LEADERSHIP</div>
+            <h2 class="section-title serif">Insights & Perspectives</h2>
+            <p class="section-description">Expert analysis, market insights, and strategic perspectives from our global team.</p>
+        </div>
+
+        <div class="insights-grid">
+            <div class="insight-card" onclick="window.open('https://medium.com/@HosVNG/wanna-sell-your-product-in-north-america-or-europe-part-1-763bd0f18dfb', '_blank')">
+                <div class="insight-image">🌎</div>
+                <div class="insight-content">
+                    <div class="insight-category">Global Expansion</div>
+                    <h3 class="insight-title">Selling in North America & Europe</h3>
+                    <p class="insight-excerpt">A comprehensive three-part series on market entry strategies for businesses expanding into Western markets.</p>
+                </div>
+            </div>
+
+            <div class="insight-card" onclick="window.open('https://medium.com/@HosVNG/vancouver-the-most-underrated-city-to-run-a-business-9f5871fbb8a1', '_blank')">
+                <div class="insight-image">🏔️</div>
+                <div class="insight-content">
+                    <div class="insight-category">Market Analysis</div>
+                    <h3 class="insight-title">Vancouver: The Underrated Business Hub</h3>
+                    <p class="insight-excerpt">Why Vancouver represents one of the most strategic locations for international business operations.</p>
+                </div>
+            </div>
+
+            <div class="insight-card" onclick="window.open('https://medium.com/@HosVNG/mexico-the-winner-of-the-trade-wars-and-how-we-help-you-get-there-105ea4b01238', '_blank')">
+                <div class="insight-image">🇲🇽</div>
+                <div class="insight-content">
+                    <div class="insight-category">Trade Strategy</div>
+                    <h3 class="insight-title">Mexico: Winning the Trade Wars</h3>
+                    <p class="insight-excerpt">How Mexico is emerging as a key beneficiary of global trade realignments and how to capitalize on this shift.</p>
+                </div>
+            </div>
+
+            <div class="insight-card" onclick="window.open('https://medium.com/@HosVNG/canada-the-new-land-of-opportunity-and-how-we-help-you-take-your-business-there-33061df35734', '_blank')">
+                <div class="insight-image">🍁</div>
+                <div class="insight-content">
+                    <div class="insight-category">Market Entry</div>
+                    <h3 class="insight-title">Canada: The New Land of Opportunity</h3>
+                    <p class="insight-excerpt">Strategic advantages of establishing operations in Canada for global businesses.</p>
+                </div>
+            </div>
+
+            <div class="insight-card" onclick="window.open('https://medium.com/@HosVNG/the-cost-of-making-marketing-content-has-never-been-lower-79f986a5f177', '_blank')">
+                <div class="insight-image">📱</div>
+                <div class="insight-content">
+                    <div class="insight-category">Digital Marketing</div>
+                    <h3 class="insight-title">The New Era of Content Creation</h3>
+                    <p class="insight-excerpt">How businesses can leverage modern tools to create high-impact marketing content on any budget.</p>
+                </div>
+            </div>
+
+            <div class="insight-card" onclick="window.open('https://medium.com/@HosVNG/how-to-find-a-job-in-canada-as-a-foreign-worker-and-new-immigrant-ff9b2917746d', '_blank')">
+                <div class="insight-image">💼</div>
+                <div class="insight-content">
+                    <div class="insight-category">Talent & Immigration</div>
+                    <h3 class="insight-title">Navigating the Canadian Job Market</h3>
+                    <p class="insight-excerpt">Essential guidance for international professionals seeking opportunities in Canada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="serif">Ready to Expand Your Global Footprint?</h2>
+            <p>Let's discuss how Vera North Group can help you navigate international markets, forge strategic partnerships, and achieve sustainable growth.</p>
+            <div class="cta-buttons">
+                <button class="btn-primary" onclick="location.href='https://contact.veranorthgroup.com'">Schedule a Consultation</button>
+                <button class="btn-secondary" onclick="location.href='https://medium.com/@HosVNG'">Read Our Insights</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3 class="serif">Vera North Group</h3>
+                <p>Boutique management consulting connecting businesses across MENA, India, North America, and Europe.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Trade Development</a></li>
+                    <li><a href="#services">M&A Advisory</a></li>
+                    <li><a href="#services">Tech Integration</a></li>
+                    <li><a href="#services">Risk Management</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#global">Global Presence</a></li>
+                    <li><a href="#insights">Insights</a></li>
+                    <li><a href="http://lavaberry.veranorthgroup.com">Lavaberry Studios</a></li>
+                    <li><a href="https://contact.veranorthgroup.com">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://medium.com/@HosVNG">Medium</a></li>
+                    <li><a href="https://substack.com/@hosvng">Substack</a></li>
+                    <li><a href="mailto:contact@veranorthgroup.com">Email</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>© 2026 Vera North Group. All rights reserved.</div>
+            <div>Vancouver · Zurich · Dubai · London · New York</div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.service-card, .insight-card, .location').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
